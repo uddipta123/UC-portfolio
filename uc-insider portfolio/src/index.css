@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Syne', sans-serif;
+    --font-serif-display: 'Cinzel Decorative', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    background-color: #0d0e10;
+    color: #e5e7eb;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif-display {
+  font-family: var(--font-serif-display);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Custom subtle noise background */
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Metallic blinds curtain stripes */
+.metal-streak {
+  background: linear-gradient(115deg, 
+    rgba(255,255,255,0.02) 0%, 
+    rgba(255,255,255,0.12) 30%, 
+    rgba(0,0,0,0.65) 50%, 
+    rgba(255,255,255,0.08) 70%, 
+    rgba(20,20,20,0.9) 100%
+  );
+}
+
+/* Continuous marquee ticker animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee 14s linear infinite;
+}
+
+/* 3D perspective styling for the curved ribbon slides */
+.perspective-container {
+  perspective: 1200px;
+  perspective-origin: center center;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

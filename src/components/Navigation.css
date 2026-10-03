@@ -1,0 +1,1151 @@
+/* =========================================================
+   FLOATING 3D PREMIUM NAVIGATION
+   UDDIPTA CHOUDHURY
+   ========================================================= */
+
+.floating-brand {
+  position: fixed;
+
+  top: 24px;
+  left: 28px;
+
+  z-index: 500;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: #fff;
+  text-decoration: none;
+
+  transition:
+    transform 0.4s cubic-bezier(.16,1,.3,1),
+    opacity 0.3s ease;
+}
+
+.floating-brand:hover {
+  transform: translateY(-2px);
+}
+
+.floating-brand-monogram {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #d8d8dd
+    );
+
+  color: #08090b;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: -0.08em;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.9);
+}
+
+.floating-brand-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.floating-brand-info strong {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 11px;
+  letter-spacing: .1em;
+}
+
+.floating-brand-info small {
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: .15em;
+
+  color: rgba(255,255,255,.42);
+}
+
+
+/* =========================================================
+   MENU WRAPPER
+   ========================================================= */
+
+.floating-menu-wrapper {
+  position: fixed;
+
+  top: 24px;
+  right: 28px;
+
+  z-index: 600;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+   ========================================================= */
+
+.floating-menu-button {
+  position: relative;
+
+  width: 72px;
+  height: 72px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255,255,255,.13);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.035) 45%,
+      rgba(0,0,0,.45)
+    );
+
+  color: white;
+
+  backdrop-filter:
+    blur(20px)
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(20px)
+    saturate(130%);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.42),
+    inset 0 1px 1px rgba(255,255,255,.16),
+    inset 0 -15px 25px rgba(0,0,0,.18);
+
+  cursor: pointer;
+
+  transition:
+    transform .6s cubic-bezier(.16,1,.3,1),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.floating-menu-button:hover {
+  transform:
+    translateY(-4px)
+    rotateX(8deg)
+    rotateY(-8deg);
+
+  border-color:
+    rgba(177,140,255,.45);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.55),
+    0 0 40px rgba(139,92,246,.12),
+    inset 0 1px 1px rgba(255,255,255,.2);
+}
+
+.floating-menu-button.is-open {
+  transform: rotate(90deg);
+}
+
+
+/* Outer ring */
+
+.floating-menu-ring {
+  position: absolute;
+
+  inset: -7px;
+
+  border:
+    1px solid
+    rgba(139,92,246,.18);
+
+  border-radius: 50%;
+
+  border-top-color:
+    rgba(177,140,255,.75);
+
+  animation:
+    menuRingSpin 8s linear infinite;
+
+  transition:
+    border-color .3s ease;
+}
+
+.floating-menu-button:hover
+.floating-menu-ring {
+  border-color:
+    rgba(177,140,255,.5);
+
+  border-top-color:
+    #c3a5ff;
+}
+
+@keyframes menuRingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Inner */
+
+.floating-menu-inner {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.floating-menu-lines {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.floating-menu-lines i {
+  display: block;
+
+  width: 16px;
+  height: 1px;
+
+  background: #fff;
+
+  transition:
+    transform .4s ease,
+    width .4s ease;
+}
+
+.floating-menu-button.is-open
+.floating-menu-lines i:nth-child(1) {
+  transform:
+    translateY(4px)
+    rotate(45deg);
+}
+
+.floating-menu-button.is-open
+.floating-menu-lines i:nth-child(2) {
+  opacity: 0;
+}
+
+.floating-menu-button.is-open
+.floating-menu-lines i:nth-child(3) {
+  transform:
+    translateY(-4px)
+    rotate(-45deg);
+}
+
+.floating-menu-label {
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 6px;
+
+  letter-spacing: .2em;
+
+  color: rgba(255,255,255,.5);
+}
+
+.floating-menu-status {
+  position: absolute;
+
+  top: 6px;
+  right: 10px;
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 6px;
+
+  color:
+    rgba(177,140,255,.8);
+}
+
+
+/* =========================================================
+   BACKDROP
+   ========================================================= */
+
+.floating-nav-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 550;
+
+  background:
+    radial-gradient(
+      circle at 85% 12%,
+      rgba(92,45,170,.08),
+      transparent 30%
+    );
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  backdrop-filter: blur(0);
+
+  transition:
+    opacity .6s ease,
+    backdrop-filter .6s ease;
+}
+
+.floating-nav-backdrop.is-visible {
+  opacity: 1;
+
+  pointer-events: auto;
+
+  backdrop-filter: blur(5px);
+}
+
+
+/* =========================================================
+   NAVIGATION CONTAINER
+   ========================================================= */
+
+.floating-navigation {
+  position: fixed;
+
+  top: 50%;
+  right: 4.5vw;
+
+  width:
+    min(680px, 94vw);
+
+  min-height: 620px;
+
+  z-index: 590;
+
+  transform:
+    translateY(-46%)
+    translateX(70px)
+    scale(.88)
+    rotateX(-8deg);
+
+  transform-origin:
+    top right;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  perspective: 1200px;
+
+  transition:
+    opacity .65s cubic-bezier(.16,1,.3,1),
+    transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+.floating-navigation.is-visible {
+  opacity: 1;
+
+  pointer-events: auto;
+
+  transform:
+    translateY(-50%)
+    translateX(0)
+    scale(1)
+    rotateX(0);
+}
+
+
+/* =========================================================
+   AMBIENT GLOW
+   ========================================================= */
+
+.floating-nav-glow {
+  position: absolute;
+
+  width: 440px;
+  height: 440px;
+
+  top: 55px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110,62,210,.18),
+      rgba(110,62,210,.06) 35%,
+      transparent 70%
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+
+  animation:
+    navGlow 5s ease-in-out infinite;
+}
+
+@keyframes navGlow {
+  0%,
+  100% {
+    transform: scale(.95);
+    opacity: .6;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   CORE
+   ========================================================= */
+
+.floating-nav-core {
+  position: absolute;
+
+  top: 245px;
+  right: 360px;
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.035) 42%,
+      rgba(7,8,11,.82) 72%
+    );
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(140%);
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.55),
+    inset 0 1px 1px rgba(255,255,255,.15),
+    inset 0 -30px 50px rgba(0,0,0,.3);
+
+  z-index: 1;
+
+  animation:
+    coreFloat 5s ease-in-out infinite;
+}
+
+@keyframes coreFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotateZ(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotateZ(1deg);
+  }
+}
+
+.floating-nav-core-ring {
+  position: absolute;
+
+  inset: 14px;
+
+  border:
+    1px solid rgba(139,92,246,.25);
+
+  border-radius: 50%;
+
+  border-left-color:
+    rgba(177,140,255,.75);
+
+  border-bottom-color:
+    transparent;
+
+  animation:
+    menuRingSpin 9s linear infinite reverse;
+}
+
+.floating-nav-core-monogram {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 35px;
+
+  font-weight: 600;
+
+  letter-spacing: -.12em;
+
+  color: #fff;
+
+  text-shadow:
+    0 0 35px rgba(139,92,246,.45);
+}
+
+.floating-nav-core-caption {
+  position: absolute;
+
+  bottom: 31px;
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 6px;
+
+  letter-spacing: .25em;
+
+  color:
+    rgba(255,255,255,.35);
+}
+
+
+/* =========================================================
+   NAV ITEMS
+   ========================================================= */
+
+.floating-nav-items {
+  position: absolute;
+
+  inset: 0;
+}
+
+.floating-nav-item {
+  position: absolute;
+
+  width: 330px;
+  min-height: 86px;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    14px
+    18px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius: 26px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.09),
+      rgba(255,255,255,.025)
+    );
+
+  color: #fff;
+
+  text-align: left;
+
+  backdrop-filter:
+    blur(22px)
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(135%);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.3),
+    inset 0 1px 1px rgba(255,255,255,.12);
+
+  cursor: pointer;
+
+  z-index: 5;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform .55s cubic-bezier(.16,1,.3,1),
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+
+/* Card positions */
+
+.floating-nav-item.item-1 {
+  top: 25px;
+  right: 25px;
+}
+
+.floating-nav-item.item-2 {
+  top: 133px;
+  right: 10px;
+}
+
+.floating-nav-item.item-3 {
+  top: 241px;
+  right: 0px;
+}
+
+.floating-nav-item.item-4 {
+  top: 349px;
+  right: 15px;
+}
+
+.floating-nav-item.item-5 {
+  top: 457px;
+  right: 35px;
+}
+
+
+/* Depth */
+
+.floating-nav-item.item-1 {
+  transform:
+    perspective(900px)
+    rotateY(-5deg)
+    rotateX(3deg);
+}
+
+.floating-nav-item.item-2 {
+  transform:
+    perspective(900px)
+    rotateY(4deg)
+    rotateX(2deg);
+}
+
+.floating-nav-item.item-3 {
+  transform:
+    perspective(900px)
+    rotateY(5deg)
+    rotateX(-2deg);
+}
+
+.floating-nav-item.item-4 {
+  transform:
+    perspective(900px)
+    rotateY(-4deg)
+    rotateX(-3deg);
+}
+
+.floating-nav-item.item-5 {
+  transform:
+    perspective(900px)
+    rotateY(-3deg)
+    rotateX(-4deg);
+}
+
+
+/* Hover */
+
+.floating-nav-item:hover,
+.floating-nav-item.is-hovered,
+.floating-nav-item:focus-visible {
+  transform:
+    perspective(900px)
+    translateZ(45px)
+    translateX(-12px)
+    rotateY(0deg)
+    rotateX(0deg);
+
+  border-color:
+    rgba(177,140,255,.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(139,92,246,.15),
+      rgba(255,255,255,.05)
+    );
+
+  box-shadow:
+    0 35px 90px rgba(0,0,0,.5),
+    0 0 40px rgba(139,92,246,.1),
+    inset 0 1px 1px rgba(255,255,255,.2);
+
+  outline: none;
+}
+
+
+/* Active */
+
+.floating-nav-item.is-active {
+  border-color:
+    rgba(177,140,255,.2);
+}
+
+
+/* Glass shine */
+
+.floating-nav-item-glass {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255,255,255,.08) 48%,
+      transparent 62%
+    );
+
+  transform:
+    translateX(-120%);
+
+  transition:
+    transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+.floating-nav-item:hover
+.floating-nav-item-glass {
+  transform:
+    translateX(120%);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.floating-nav-number {
+  width: 28px;
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 8px;
+
+  color:
+    rgba(255,255,255,.3);
+}
+
+.floating-nav-symbol {
+  width: 32px;
+
+  font-size: 17px;
+
+  color:
+    rgba(177,140,255,.65);
+
+  transition:
+    transform .4s ease,
+    color .4s ease;
+}
+
+.floating-nav-item:hover
+.floating-nav-symbol {
+  color: #c9b0ff;
+
+  transform:
+    scale(1.2)
+    rotate(10deg);
+}
+
+.floating-nav-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  flex: 1;
+}
+
+.floating-nav-label {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  letter-spacing: -.02em;
+}
+
+.floating-nav-description {
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: .15em;
+
+  color:
+    rgba(255,255,255,.35);
+}
+
+.floating-nav-arrow {
+  font-size: 15px;
+
+  color:
+    rgba(255,255,255,.35);
+
+  transition:
+    transform .4s ease,
+    color .4s ease;
+}
+
+.floating-nav-item:hover
+.floating-nav-arrow {
+  color: #fff;
+
+  transform:
+    translate(4px,-4px);
+}
+
+.floating-nav-active-dot {
+  position: absolute;
+
+  top: 12px;
+  right: 13px;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(177,140,255,.8);
+
+  box-shadow:
+    0 0 10px rgba(139,92,246,.8);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.floating-nav-footer {
+  position: absolute;
+
+  left: 8px;
+  right: 8px;
+  top: 570px;
+  bottom: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1.5fr 1fr;
+
+  gap: 20px;
+
+  padding-top: 15px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.08);
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+}
+
+.floating-nav-footer div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.floating-nav-footer span {
+  font-size: 6px;
+
+  letter-spacing: .18em;
+
+  color:
+    rgba(255,255,255,.3);
+}
+
+.floating-nav-footer strong {
+  font-size: 7px;
+
+  font-weight: 400;
+
+  letter-spacing: .08em;
+
+  color:
+    rgba(255,255,255,.62);
+}
+
+
+/* =========================================================
+   INTRO BUTTON
+   ========================================================= */
+
+.floating-utility {
+  position: fixed;
+
+  left: 28px;
+  bottom: 28px;
+
+  z-index: 500;
+}
+
+.floating-utility-button {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    9px
+    13px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color:
+    rgba(255,255,255,.55);
+
+  backdrop-filter:
+    blur(15px);
+
+  font-family:
+    "IBM Plex Mono",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: .15em;
+
+  cursor: pointer;
+
+  transition:
+    all .35s ease;
+}
+
+.floating-utility-button:hover {
+  color: #fff;
+
+  border-color:
+    rgba(177,140,255,.35);
+
+  transform:
+    translateY(-3px);
+}
+
+.floating-utility-button b {
+  font-size: 13px;
+
+  font-weight: 400;
+
+  color:
+    rgba(177,140,255,.75);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .floating-brand {
+    top: 18px;
+    left: 18px;
+  }
+
+  .floating-brand-monogram {
+    width: 34px;
+    height: 34px;
+  }
+
+  .floating-brand-info {
+    display: none;
+  }
+
+  .floating-menu-wrapper {
+    top: 18px;
+    right: 18px;
+  }
+
+  .floating-menu-button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .floating-navigation {
+    top: 92px;
+    right: 15px;
+    left: 15px;
+
+    width: auto;
+
+    min-height: 0;
+
+    height:
+      calc(100vh - 115px);
+
+    max-height: 690px;
+
+    transform:
+      translateY(-20px)
+      scale(.94);
+
+    overflow: visible;
+  }
+
+  .floating-navigation.is-visible {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  .floating-nav-core {
+    display: none;
+  }
+
+  .floating-nav-glow {
+    top: 30px;
+    right: 5%;
+
+    width: 300px;
+    height: 300px;
+  }
+
+  .floating-nav-items {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding-top: 10px;
+  }
+
+  .floating-nav-item,
+  .floating-nav-item.item-1,
+  .floating-nav-item.item-2,
+  .floating-nav-item.item-3,
+  .floating-nav-item.item-4,
+  .floating-nav-item.item-5 {
+    position: relative;
+
+    top: auto;
+    right: auto;
+
+    width: 100%;
+
+    min-height: 74px;
+
+    transform:
+      perspective(700px)
+      rotateY(0)
+      rotateX(0);
+  }
+
+  .floating-nav-item:hover,
+  .floating-nav-item.is-hovered {
+    transform:
+      translateX(-4px)
+      translateZ(15px);
+  }
+
+  .floating-nav-label {
+    font-size: 15px;
+  }
+
+  .floating-nav-description {
+    font-size: 6px;
+  }
+
+  .floating-nav-footer {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -55px;
+
+    grid-template-columns:
+      1fr 1fr 1fr;
+
+    gap: 8px;
+  }
+
+  .floating-nav-footer div:nth-child(2) {
+    display: none;
+  }
+
+  .floating-nav-footer div:last-child {
+    text-align: right;
+  }
+
+  .floating-utility {
+    left: 18px;
+    bottom: 18px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-menu-ring,
+  .floating-nav-glow,
+  .floating-nav-core {
+    animation: none;
+  }
+
+  .floating-navigation,
+  .floating-nav-item,
+  .floating-menu-button {
+    transition-duration: .01ms;
+  }
+}

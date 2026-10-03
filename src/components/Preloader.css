@@ -1,0 +1,1038 @@
+/* =========================================================
+   PREMIUM CINEMATIC PRELOADER
+   UDDIPTA CHOUDHURY — CREATIVE DEVELOPER
+   ========================================================= */
+
+.premium-preloader {
+  --bg: #0c0d10;
+  --text: #f2f2f4;
+  --muted: rgba(242, 242, 244, 0.42);
+  --line: rgba(255, 255, 255, 0.12);
+
+  --purple: #8b5cf6;
+  --purple-light: #b18cff;
+  --purple-soft: rgba(139, 92, 246, 0.25);
+
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(93, 48, 180, 0.08),
+      transparent 32%
+    ),
+    var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    "IBM Plex Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   ATMOSPHERE
+   ========================================================= */
+
+.preloader-noise {
+  position: absolute;
+  inset: -50%;
+
+  pointer-events: none;
+
+  opacity: 0.035;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+  animation: preloaderNoise 0.18s steps(2) infinite;
+}
+
+@keyframes preloaderNoise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-2%, 1%);
+  }
+
+  50% {
+    transform: translate(1%, -2%);
+  }
+
+  75% {
+    transform: translate(2%, 2%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
+/* =========================================================
+   TECHNICAL GRID
+   ========================================================= */
+
+.preloader-grid {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.22;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 0%,
+      transparent 72%
+    );
+}
+
+
+/* =========================================================
+   VIGNETTE
+   ========================================================= */
+
+.preloader-vignette {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+}
+
+
+/* =========================================================
+   TOP
+   ========================================================= */
+
+.preloader-top {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding:
+    28px
+    clamp(24px, 4vw, 64px);
+
+  z-index: 5;
+
+  font-size: 9px;
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.preloader-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.preloader-live-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--purple-light);
+
+  box-shadow:
+    0 0 8px var(--purple),
+    0 0 20px rgba(139, 92, 246, 0.7);
+
+  animation: livePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.preloader-top-right {
+  display: flex;
+  gap: 30px;
+
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   CENTER
+   ========================================================= */
+
+.preloader-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(1050px, 94vw);
+
+  transform:
+    translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   MONOGRAM SYSTEM
+   ========================================================= */
+
+.preloader-system {
+  position: relative;
+
+  width: clamp(180px, 18vw, 270px);
+  aspect-ratio: 1;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 34px;
+}
+
+
+/* Outer technical circle */
+
+.preloader-orbit {
+  position: absolute;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+
+  border-radius: 50%;
+}
+
+.preloader-orbit--one {
+  inset: 5%;
+
+  animation:
+    orbitRotate 18s linear infinite;
+}
+
+.preloader-orbit--two {
+  inset: 18%;
+
+  border-color: rgba(139, 92, 246, 0.22);
+
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+
+  animation:
+    orbitRotateReverse 10s linear infinite;
+}
+
+@keyframes orbitRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitRotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+
+/* Crosshair */
+
+.preloader-crosshair {
+  position: absolute;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.preloader-crosshair--horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.preloader-crosshair--vertical {
+  width: 1px;
+  height: 100%;
+}
+
+
+/* Scanning arc */
+
+.preloader-scan {
+  position: absolute;
+
+  inset: 4%;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 280deg,
+      rgba(139, 92, 246, 0.05) 315deg,
+      rgba(177, 140, 255, 0.8) 350deg,
+      transparent 355deg
+    );
+
+  mask-image:
+    radial-gradient(
+      transparent 63%,
+      black 64%,
+      black 65%,
+      transparent 66%
+    );
+
+  animation:
+    orbitRotate 4s linear infinite;
+}
+
+
+/* Orbit dots */
+
+.preloader-orbit-dot {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: var(--purple-light);
+
+  box-shadow:
+    0 0 10px var(--purple-light),
+    0 0 25px var(--purple);
+}
+
+.preloader-orbit-dot--one {
+  top: 5%;
+  left: 50%;
+
+  animation:
+    dotOrbitOne 5s linear infinite;
+}
+
+.preloader-orbit-dot--two {
+  right: 17%;
+  bottom: 17%;
+
+  animation:
+    dotOrbitTwo 7s linear infinite;
+}
+
+@keyframes dotOrbitOne {
+  from {
+    transform: rotate(0deg)
+      translateX(0);
+  }
+
+  to {
+    transform: rotate(360deg)
+      translateX(0);
+  }
+}
+
+@keyframes dotOrbitTwo {
+  from {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.3;
+  }
+}
+
+
+/* =========================================================
+   UC MONOGRAM
+   ========================================================= */
+
+.preloader-monogram {
+  position: relative;
+
+  width: 90px;
+  height: 90px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.13),
+      transparent 65%
+    );
+
+  box-shadow:
+    inset 0 0 40px rgba(139, 92, 246, 0.08),
+    0 0 50px rgba(139, 92, 246, 0.08);
+
+  transform: rotate(45deg);
+
+  animation:
+    monogramAppear 1s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.preloader-monogram span {
+  display: block;
+
+  transform: rotate(-45deg);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 27px;
+  font-weight: 500;
+
+  letter-spacing: -0.08em;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.preloader-monogram i {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  top: -3px;
+  right: -3px;
+
+  background: var(--purple-light);
+
+  box-shadow:
+    0 0 12px var(--purple-light);
+
+  transform: rotate(-45deg);
+}
+
+@keyframes monogramAppear {
+  from {
+    opacity: 0;
+    transform:
+      rotate(45deg)
+      scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      rotate(45deg)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
+.preloader-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  font-size: 9px;
+  letter-spacing: 0.22em;
+
+  color: var(--muted);
+
+  animation:
+    fadeUp 0.9s 0.15s both;
+}
+
+.preloader-kicker b {
+  color: var(--purple-light);
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
+.preloader-title {
+  display: flex;
+  flex-direction: column;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:
+    clamp(46px, 8vw, 112px);
+
+  line-height: 0.78;
+
+  font-weight: 500;
+
+  letter-spacing: -0.075em;
+
+  text-transform: uppercase;
+
+  animation:
+    titleReveal 1.2s 0.1s cubic-bezier(.16,1,.3,1) both;
+}
+
+.preloader-title span:first-child {
+  opacity: 0.95;
+}
+
+.preloader-title span:last-child {
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px rgba(255, 255, 255, 0.3);
+
+  margin-left: 8vw;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform:
+      translateY(25px)
+      scale(0.97);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.preloader-status-row {
+  width: min(450px, 75vw);
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-top: 32px;
+
+  font-size: 8px;
+  letter-spacing: 0.2em;
+
+  color: var(--muted);
+
+  animation:
+    fadeUp 1s 0.35s both;
+}
+
+.preloader-status-line {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.16)
+    );
+}
+
+.preloader-status-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.16),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   BOTTOM
+   ========================================================= */
+
+.preloader-bottom {
+  position: absolute;
+
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  bottom: 28px;
+
+  z-index: 5;
+}
+
+
+/* Progress metadata */
+
+.preloader-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  font-size: 8px;
+  letter-spacing: 0.18em;
+
+  color: var(--muted);
+}
+
+.preloader-percent {
+  font-size: 13px;
+
+  color: #ffffff;
+
+  letter-spacing: 0.05em;
+}
+
+
+/* Progress track */
+
+.preloader-progress-track {
+  position: relative;
+
+  width: 100%;
+  height: 1px;
+
+  overflow: visible;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+}
+
+
+/* Progress */
+
+.preloader-progress-fill {
+  position: absolute;
+
+  inset: 0;
+
+  transform-origin: left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.5),
+      var(--purple-light)
+    );
+
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.6);
+
+  transition:
+    transform 80ms linear;
+}
+
+
+/* Glow head */
+
+.preloader-progress-glow {
+  position: absolute;
+
+  top: 50%;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 8px #ffffff,
+    0 0 20px var(--purple-light),
+    0 0 40px var(--purple);
+
+  transition:
+    left 80ms linear;
+}
+
+
+/* Footer */
+
+.preloader-footer {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  margin-top: 16px;
+
+  font-size: 8px;
+  letter-spacing: 0.14em;
+
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.preloader-footer span:last-child {
+  text-align: right;
+}
+
+
+/* Skip */
+
+.preloader-footer button {
+  border: 0;
+
+  padding: 0;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font: inherit;
+
+  letter-spacing: inherit;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.preloader-footer button span {
+  display: inline-block;
+
+  margin-left: 5px;
+
+  color: var(--purple-light);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.preloader-footer button:hover {
+  color: #ffffff;
+
+  transform: translateY(-2px);
+}
+
+.preloader-footer button:hover span {
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* =========================================================
+   CINEMATIC REVEAL
+   ========================================================= */
+
+.preloader-reveal {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  transform:
+    translateX(-110%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(139, 92, 246, 0.08) 45%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(139, 92, 246, 0.12) 55%,
+      transparent 100%
+    );
+
+  mix-blend-mode: screen;
+}
+
+.premium-preloader--exit
+  .preloader-reveal {
+  animation:
+    preloaderReveal 0.75s
+    cubic-bezier(.77,0,.18,1)
+    forwards;
+}
+
+@keyframes preloaderReveal {
+  from {
+    transform: translateX(-110%);
+  }
+
+  to {
+    transform: translateX(110%);
+  }
+}
+
+
+/* =========================================================
+   EXIT ANIMATION
+   ========================================================= */
+
+.premium-preloader--exit
+  .preloader-center {
+  animation:
+    centerExit 0.7s
+    cubic-bezier(.77,0,.18,1)
+    forwards;
+}
+
+.premium-preloader--exit
+  .preloader-top {
+  animation:
+    topExit 0.65s
+    ease-in
+    forwards;
+}
+
+.premium-preloader--exit
+  .preloader-bottom {
+  animation:
+    bottomExit 0.65s
+    ease-in
+    forwards;
+}
+
+@keyframes centerExit {
+  to {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+    filter: blur(12px);
+  }
+}
+
+@keyframes topExit {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes bottomExit {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+
+/* =========================================================
+   GENERAL ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .preloader-top {
+    padding: 22px 20px;
+
+    font-size: 7px;
+  }
+
+  .preloader-top-right {
+    gap: 0;
+  }
+
+  .preloader-top-right span:first-child {
+    display: none;
+  }
+
+  .preloader-system {
+    width: 170px;
+
+    margin-bottom: 28px;
+  }
+
+  .preloader-monogram {
+    width: 72px;
+    height: 72px;
+  }
+
+  .preloader-monogram span {
+    font-size: 22px;
+  }
+
+  .preloader-title {
+    font-size:
+      clamp(42px, 13vw, 72px);
+  }
+
+  .preloader-title span:last-child {
+    margin-left: 10vw;
+  }
+
+  .preloader-status-row {
+    width: 85vw;
+
+    margin-top: 26px;
+
+    font-size: 7px;
+  }
+
+  .preloader-bottom {
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  .preloader-progress-meta {
+    font-size: 7px;
+  }
+
+  .preloader-footer {
+    grid-template-columns: 1fr auto;
+
+    font-size: 7px;
+  }
+
+  .preloader-footer span:last-child {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-height: 650px) {
+
+  .preloader-system {
+    width: 130px;
+
+    margin-bottom: 18px;
+  }
+
+  .preloader-monogram {
+    width: 62px;
+    height: 62px;
+  }
+
+  .preloader-title {
+    font-size: 48px;
+  }
+
+  .preloader-status-row {
+    margin-top: 18px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .preloader-noise,
+  .preloader-live-dot,
+  .preloader-orbit,
+  .preloader-scan,
+  .preloader-orbit-dot,
+  .preloader-monogram,
+  .preloader-kicker,
+  .preloader-title,
+  .preloader-status-row {
+    animation: none !important;
+  }
+
+  .preloader-reveal {
+    transition: none !important;
+  }
+
+  .preloader-progress-fill,
+  .preloader-progress-glow {
+    transition: none;
+  }
+}
